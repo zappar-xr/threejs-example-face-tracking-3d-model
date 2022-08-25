@@ -6,8 +6,7 @@
 import * as THREE from 'three';
 import * as ZapparThree from '@zappar/zappar-threejs';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import helmet from '../assets/z_helmet.glb';
-import './index.sass';
+import './index.css'
 
 // The SDK is supported on many different browsers, but there are some that
 // don't provide camera access. This function detects if the browser is supported
@@ -80,7 +79,9 @@ faceTrackerGroup.add(mask);
 // Load a 3D model to place within our group (using ThreeJS's GLTF loader)
 // Pass our loading manager in to ensure the progress bar works correctly
 const gltfLoader = new GLTFLoader(manager);
-gltfLoader.load(helmet, (gltf) => {
+
+const helmetSrc = new URL('../assets/z_helmet.glb', import.meta.url).href;
+gltfLoader.load(helmetSrc, (gltf) => {
   // Position the loaded content to overlay user's face
   gltf.scene.position.set(0.3, -1.3, 0);
   gltf.scene.scale.set(1.1, 1.1, 1.1);
